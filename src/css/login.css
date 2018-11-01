@@ -1,0 +1,66 @@
+.App {
+    background-color: #282c34;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    height: 100vh;
+}
+/* #282c34 */
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #1E90FF;
+    height: 800px;
+    width: 600px;
+    border-radius: 10px;
+}
+
+#login {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+}
+
+input{
+    color:white;
+    background-color: transparent;
+    box-shadow: none;
+    font-size: 20px;
+    width: 370px;
+    height: 40px;
+    border-top: transparent !important;
+    border-left: transparent !important;
+    border-right: transparent !important;
+    border-bottom: 1px solid !important;
+}
+
+input:focus {
+    outline: none;
+}
+button{
+    font-size: 30px;
+    background-color: white;
+    color: #1E90FF;
+    width: 50%;
+    border-radius: 10px;
+    height: 50px;
+}
+
+button:focus{
+    outline:none;
+}
+
+.App-logo {
+    animation: App-logo-spin infinite 20s linear;
+    height: 20vmin;
+}
+@keyframes App-logo-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
