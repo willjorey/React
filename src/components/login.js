@@ -44,6 +44,7 @@ class Login extends Component {
     return (
       <div className='App'>
         <div className='form'>
+            <h1>Login</h1>
             <img src={logo} className="App-logo" alt="logo" />
             <form id='login'>
                 <p>Email</p>
