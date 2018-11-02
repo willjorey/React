@@ -28,11 +28,12 @@ class Login extends Component {
             pass: event.target.value
         })
     };
+
     onLogin = () =>{
         let email = this.state.email;
         let pass = this.state.pass;
         firebase.auth().signInWithEmailAndPassword(email, pass).then(function(user){
-            console.log(user.user);
+            console.log("Logged in");
         }).catch((error) => {
             if (error.code === 'auth/invalid-email')
                 console.log(error.code)            
@@ -40,6 +41,7 @@ class Login extends Component {
                 console.log(error.code)
         });
     }
+    
   render() {
     return (
       <div className='App'>
