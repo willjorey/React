@@ -1,16 +1,13 @@
 import { combineReducers } from 'redux';
  
-import { SET_PROFILE, LOGOUT_PROFILE } from "../actions/" //Import the actions types constant we defined in our actions
+import { SET_AUTH } from "../actions/" //Import the actions types constant we defined in our actions
 
 
-let profileState = {profile: {email: 'My email'}};
-const profileReducer = (state = profileState, action) => {
+let loginState = {authentication: false};
+const loginReducer = (state = loginState, action) => {
     switch (action.type) {
-        case SET_PROFILE:
-            state = {...profileState, profile: action.profile};
-            return state;
-        case LOGOUT_PROFILE:
-            state = {...profileState.profile};
+        case SET_AUTH:
+            state = {...loginState, authentication: true};
             return state;
         default:
             return state;
@@ -19,7 +16,7 @@ const profileReducer = (state = profileState, action) => {
 
 // Combine all the reducers
 const rootReducer = combineReducers({
-    profileReducer
+    loginReducer
     // ,[ANOTHER REDUCER], [ANOTHER REDUCER] ....
 })
  

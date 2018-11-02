@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Actions from '../actions/index';
 import reducer from '../reducers/index';
-import Login from '../components/login';
+import {Login} from '../components/login';
 import Default from '../components/default';
 
 // setup file enzyme
@@ -18,23 +18,37 @@ import rootReducer from '../reducers';
 
 const store = createStore(rootReducer);
 
-
-
-// const wrapper = shallow(<Login store={store}/>);
-const wrapper = mount(<Login store={store}/>);
+const wrapper = shallow(<Login/>);
 
 //ENZYZME TESTS
 describe('Render Login', ()=>{
    // make our assertion and what we expect to happen 
-   console.log(wrapper.debug());
- it('should render without throwing an error', () => {
-  expect(wrapper.find('#login').exists()).toBe(true)
-  })
-})
+  //  console.log(wrapper.debug());
+  it('renders without crashing', () => {
+    shallow(<Login/>);
+  });
+ 
+  it('Renders JSX', () => {
+    const email = <p>Email</p>;
+    expect(wrapper.contains(email)).toBe(true);
+  });
 
-// REDUX TESTS
-describe('Login reducer', () => {
-    it('should return the initial state', () => {
-      expect(reducer(undefined, {}).profileReducer).toEqual({profile:{email:'My email'}})
-    })
-});
+  it('Changes state of email', () =>{
+    const input = wrapper.find('#email');
+    input.simulate('click');
+    input.simulate('change', {
+      target: {value: 'billyreyes@rogers.com'}
+    });
+    expect(wrapper.state('email')).toEqual('billyreyes@rogers.com')
+  });
+
+  it('Changes state of Password', () =>{
+    const input = wrapper.find('#pass');
+    input.simulate('click');
+    input.simulate('change', {
+      target: {value: 'test123'}
+    });
+    expect(wrapper.state('pass')).toEqual('test123')
+  });
+
+})

@@ -7,10 +7,9 @@ import {firebase} from '../firebase/firebase';
 import logo from '../logo.svg';
 
 
-class Login extends Component {
+export class Login extends Component {
     constructor(props){
         super(props);
-        console.log(this.props);
         this.state = {
             email: '',
             pass: '',
@@ -32,8 +31,9 @@ class Login extends Component {
     onLogin = () =>{
         let email = this.state.email;
         let pass = this.state.pass;
+        let that = this;
         firebase.auth().signInWithEmailAndPassword(email, pass).then(function(user){
-            console.log("Logged in");
+            that.props.authenticate();
         }).catch((error) => {
             if (error.code === 'auth/invalid-email')
                 console.log(error.code)            
@@ -46,14 +46,13 @@ class Login extends Component {
     return (
       <div className='App'>
         <div className='form'>
-            <h1>Login</h1>
             <img src={logo} className="App-logo" alt="logo" />
             <form id='login'>
                 <p>Email</p>
-                <input type='text' value={this.state.email} onChange={this.setEmail}/>
+                <input id='email' type='text' value={this.state.email} onChange={this.setEmail}/>
                 <br/>
                 <p>Password</p>
-                <input type='text' value={this.state.pass} onChange={this.setPass}/>
+                <input id='pass' type='text' value={this.state.pass} onChange={this.setPass}/>
                 <br/>
             </form>
             <button onClick={this.onLogin}>Login</button>
@@ -69,7 +68,7 @@ class Login extends Component {
 // This function makes Redux know that this component needs to be passed a piece of the state
 function mapStateToProps(state, props) {
     return {
-        profile: state.profileReducer.profile,
+        authentication: state.loginReducer.authentication,
     }
 }
 

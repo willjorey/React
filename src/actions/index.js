@@ -1,8 +1,5 @@
 export const DATA_AVAILABLE = 'DATA_AVAILABLE';
-export const LOGOUT = 'LOGOUT';
-export const SET_PROFILE = 'SET_PROFILE';
-export const LOGOUT_PROFILE = 'LOGOUT_PROFILE';
-export const ADD_SUB = 'ADD_SUB';
+export const SET_AUTH = 'SET_AUTH';
 
 //Import the sample data
 // import Data from '../instructions.json';
@@ -21,8 +18,12 @@ export const ADD_SUB = 'ADD_SUB';
 //     };
 // };
 
-export function setProfile(pro){
-    return (dispatch) => {
-        dispatch({type: SET_PROFILE, profile: pro});
-    };
+// export function authenticate(pro){
+//     return (dispatch) => {
+//         dispatch({type: SET_AUTH, profile: pro});
+//     };
+// };
+
+export function authenticate(){
+    return {type: SET_AUTH};
 };
