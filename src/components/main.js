@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import Login from './login';
 import Home from './home';
+import Organizations from './organizations';
 
 const PrivateRoute = ({component: Component, ...rest}) => (
     <Route {...rest} render={ (props)  => (
@@ -21,6 +22,7 @@ class Main extends React.Component{
                     <Switch>
                         <Route exact path="/" component={Login}/>
                         <PrivateRoute exact path='/home' component={Home} auth={this.props.authentication}/>
+                        <PrivateRoute exact path="/organizations" component={Organizations} auth={this.props.authentication}/>
                     </Switch>
                 </Router>
 		);

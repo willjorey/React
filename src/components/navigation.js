@@ -10,7 +10,7 @@ export const Navigation = (props) => {
 					<div className="navbar-header">
 						<ul className="nav navbar-nav">
 							<li><NavLink to="/home">Home</NavLink></li>
-							<li><NavLink to="/home">Organizations</NavLink></li>
+							<li><NavLink to="/organizations">Organizations</NavLink></li>
 							<li><NavLink to="/home">Tournaments</NavLink></li>
 						</ul>
 					</div>

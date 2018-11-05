@@ -1,0 +1,16 @@
+.Organizations{
+    align-items: center;
+    justify-content: center;
+}
+
+#item-container{
+    flex: 1;
+    flex-direction: row;
+}
+
+#item-name{
+    font-size: 20px;
+}
+p{
+    color:white;
+}

@@ -15,7 +15,6 @@ export class Login extends Component {
             pass: '',
             error: '',
         }
-        console.log(this.props);
     }
 
     setEmail = (event) =>{
@@ -36,8 +35,7 @@ export class Login extends Component {
         let that = this;
         firebase.auth().signInWithEmailAndPassword(email, pass).then(function(user){
             that.props.authenticate();
-            that.props.history.push('/home')
-            console.log(that.props);
+            that.props.history.push('/home');
         }).catch((error) => {
             if (error.code === 'auth/invalid-email')
                 console.log(error.code)            

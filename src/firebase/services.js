@@ -28,8 +28,14 @@ const db = firebase.database();
 export const getOrgs = (that) => {
     db.ref('/v1/Organizations').on("value", function(snapshot) {
         let obj = snapshot.val();
+        let temp = [];
+
+        for (let key in obj){
+            temp.push(obj[key])
+        }
         that.setState({
-            orgs:obj
-        })
+            orgs: temp
+        });
+        console.log(temp)
     });
 };
