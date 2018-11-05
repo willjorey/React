@@ -14,6 +14,7 @@ export class Login extends Component {
             email: '',
             pass: '',
         }
+        console.log(this.props);
     }
 
     setEmail = (event) =>{
@@ -47,17 +48,19 @@ export class Login extends Component {
   render() {
     return (
       <div className='App'>
-        <div className='form'>
-            <img src={logo} className="App-logo" alt="logo" />
-            <form id='login'>
-                <p>Email</p>
-                <input id='email' type='text' value={this.state.email} onChange={this.setEmail}/>
-                <br/>
-                <p>Password</p>
-                <input id='pass' type='text' value={this.state.pass} onChange={this.setPass}/>
-                <br/>
-            </form>
-            <button onClick={this.onLogin}>Login</button>
+        <div className='Login'>
+            <div className='form'>
+                <img src={logo} className="App-logo" alt="logo" />
+                <form id='login'>
+                    <p>Email</p>
+                    <input id='email' type='text' value={this.state.email} onChange={this.setEmail}/>
+                    <br/>
+                    <p>Password</p>
+                    <input id='pass' type='text' value={this.state.pass} onChange={this.setPass}/>
+                    <br/>
+                </form>
+                <button onClick={this.onLogin}>Login</button>
+            </div>
         </div>
       </div>
     );
