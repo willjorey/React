@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-
-import Login from './components/login'
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
+import Main from './components/main';
 
 import rootReducer from './reducers';
 
@@ -13,7 +12,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Login/>
+        <Main/>
       </Provider>
     );
   }

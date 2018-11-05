@@ -34,6 +34,8 @@ export class Login extends Component {
         let that = this;
         firebase.auth().signInWithEmailAndPassword(email, pass).then(function(user){
             that.props.authenticate();
+            that.props.history.push('/home')
+            console.log(that.props);
         }).catch((error) => {
             if (error.code === 'auth/invalid-email')
                 console.log(error.code)            
@@ -56,7 +58,6 @@ export class Login extends Component {
                 <br/>
             </form>
             <button onClick={this.onLogin}>Login</button>
-
         </div>
       </div>
     );
