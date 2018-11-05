@@ -17,7 +17,7 @@ class Main extends React.Component{
 
 	render() {
 		return(
-                <Router>
+                <Router basename={process.env.PUBLIC_URL}>
                     <Switch>
                         <Route exact path="/" component={Login}/>
                         <PrivateRoute exact path='/home' component={Home} auth={this.props.authentication}/>
