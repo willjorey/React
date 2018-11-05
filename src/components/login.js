@@ -13,6 +13,7 @@ export class Login extends Component {
         this.state = {
             email: '',
             pass: '',
+            error: '',
         }
         console.log(this.props);
     }
@@ -42,6 +43,10 @@ export class Login extends Component {
                 console.log(error.code)            
             if(error.code === 'auth/wrong-password')
                 console.log(error.code)
+
+            this.setState({
+                error: error.code
+            })
         });
     }
     
@@ -60,6 +65,8 @@ export class Login extends Component {
                     <br/>
                 </form>
                 <button onClick={this.onLogin}>Login</button>
+
+                <p style={{color: 'yellow', fontSize: '20px'}}>{this.state.error}</p>
             </div>
         </div>
       </div>
