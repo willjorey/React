@@ -37,10 +37,10 @@ input{
     font-size: 20px;
     width: 370px;
     height: 40px;
-    border-top: transparent !important;
-    border-left: transparent !important;
-    border-right: transparent !important;
-    border-bottom: 1px solid !important;
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    border-bottom: 1px solid;
 }
 
 input:focus {

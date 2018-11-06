@@ -41,6 +41,6 @@ export const fetchOrgs = (that) =>{
 
 
 export const postOrg = (org) => {
-    console.log(org)
+    console.log(org);
     db.ref('/v1/Organizations').push(org);
 };

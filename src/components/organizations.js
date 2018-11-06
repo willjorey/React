@@ -4,6 +4,10 @@ import {bindActionCreators} from 'redux';
 import * as Actions from '../actions'; //Import your actions
 import {fetchOrgs} from '../firebase/services';
 import {Navigation} from './navigation';
+import Modal from 'react-modal';
+
+import {postOrg} from '../firebase/services';
+import logo from '../logo.svg';
 
 import '../css/organizations.css'
 
@@ -12,26 +16,101 @@ export class Organizations extends Component {
         super(props);
         this.state = {
             orgs: [],
+            showModal: false,
+            name: '',
+            url: '',
+            msg:'',
         }
     }
 
     componentDidMount = () =>{
         fetchOrgs(this);
     }
+
+    openModal = () =>{
+        this.setState({
+            showModal: true
+        })
+    };
     
+    closeModal = () =>{
+        this.setState({
+            showModal: false
+        })
+    };
+
+    setName = (event) =>{
+        this.setState({
+            name: event.target.value
+        })
+    };
+
+    setUrl = (event) =>{
+        this.setState({
+            url: event.target.value
+        })
+    };
+
+    onSubmit = () =>{
+        let obj = {name: this.state.name, banner: this.state.url, subscriptions: 0, Tournaments: {default:'test'}};
+        if(this.state.name !== ''){
+            postOrg(obj);
+            this.setState({
+               msg: 'Organization Added!',
+           });
+           this.state.orgs.push(obj);
+        }else{
+            this.setState({
+                msg: 'Name: Field is Empty'
+            })
+        }
+
+    }
   render() {
     return (
       <div className='Organizations'>
         <Navigation/>
-        <h3 style={{color: 'white', fontSize:'30px'}}>Organizations</h3>
-        <div id='item-container'>
-                {this.state.orgs.map( (org, i) =>  
-                <div>
-                    <p id='item-name'>{org.name}</p>
-                    <img width='400px' height='200px 'src={org.banner}/>
+        <button id='add-btn' onClick={this.openModal}>+ Add Organization</button>
+        <div id='container'>
+            <h3 style={{color: 'white', fontSize:'30px'}}>Organizations</h3>
+
+            <div>
+                <Modal
+                isOpen={this.state.showModal}
+                onRequestClose={this.closeModal}
+                contentLabel="Example Modal"
+                className="Modal"
+                style={{overlay:{backgroundColor: 'black', opacity: '0.8'} }}
+                >
+
+                <div id='form-container'>
+                    <form>
+                        <p style={{color:'white'}}>Name of Organization</p>
+                        <input placeholder='NBA' id='name-form'type='text' value={this.state.name} onChange={this.setName}/>
+
+                        <p style={{color:'white'}}>Logo Url</p>
+                        <input placeholder='Optional' id='name-form'type='text' value={this.state.url} onChange={this.setUrl}/>
+                    </form>
+                    <button id='submit-btn' onClick={this.onSubmit}>Submit</button>
+
+                    <p style={{color: 'yellow', fontSize:'20px', marginLeft: '16%'}}>{this.state.msg}</p>
                 </div>
 
-                    )}
+                <div id='btn-container'>
+                    <button id='close-btn' onClick={this.closeModal}>Close</button>
+                </div>
+
+                </Modal>
+            </div>
+
+            <div id='item-container'>
+                    {this.state.orgs.map( (org, i) =>  
+                    <div>
+                        <p id='item-name'>{org.name}</p>
+                        <img width='200px' height='100px' src={org.banner} onError={(e)=>{e.target.onerror = null; e.target.src=logo}}/>
+                    </div>
+                        )}
+            </div>
         </div>
       </div>
     );

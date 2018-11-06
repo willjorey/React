@@ -1,11 +1,11 @@
-.Organizations{
-    align-items: center;
-    justify-content: center;
+#container{
+    margin-left: 33%;
 }
 
 #item-container{
     flex: 1;
-    flex-direction: row;
+    flex-direction: column;
+
 }
 
 #item-name{
@@ -13,4 +13,60 @@
 }
 p{
     color:white;
+}
+
+.Modal {
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    right: 25%;
+    bottom: 25%;
+    border-color: transparent;
+    border-radius: 10px;
+    width:800px;
+    height: 500px;
+    background-color: #282c34;
+  }
+
+
+  #btn-container{
+      flex: 1;
+      flex-direction: row;
+      position: fixed;
+      bottom: 25%;
+      right: 35%;
+  }
+
+  #form-container{
+      margin-top: 50px;
+}
+
+#form-container{
+    margin-left: 25%;
+}
+#form-container button{
+    margin-top: 10%;
+    margin-left: 15%;
+}
+
+#form-container input{
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    border-bottom: 1px solid;
+}
+  #close-btn{
+      width:100px;
+      font-size: 20px;
+      color: red;
+  }
+
+  #submit-btn{
+    width:200px;
+    font-size: 30px;
+}
+
+#add-btn{
+    font-size: 20px;
+    width:200px;
 }
