@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as Actions from '../actions'; //Import your actions
-import {getOrgs} from '../firebase/services';
+import {fetchOrgs} from '../firebase/services';
 import {Navigation} from './navigation';
 
 import '../css/organizations.css'
@@ -16,7 +16,7 @@ export class Organizations extends Component {
     }
 
     componentDidMount = () =>{
-        getOrgs(this);
+        fetchOrgs(this);
     }
     
   render() {

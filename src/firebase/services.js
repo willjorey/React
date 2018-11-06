@@ -1,6 +1,5 @@
 import { firebase } from './firebase';
-
-
+const URL = 'https://basketball-9e231.firebaseio.com';
 // Database structure:
 // Organizations obj:
                 // {banner: 'url to picture',
@@ -25,17 +24,23 @@ import { firebase } from './firebase';
             //     }
             // }}
 const db = firebase.database();
-export const getOrgs = (that) => {
-    db.ref('/v1/Organizations').on("value", function(snapshot) {
-        let obj = snapshot.val();
-        let temp = [];
 
-        for (let key in obj){
-            temp.push(obj[key])
+export const fetchOrgs = (that) =>{
+    let str = '/v1/Organizations.json';
+    fetch(URL + str).then((res) => res.json()).then((snapshot) => {
+        let list = [];
+        for (let key in snapshot){
+            let temp = snapshot[key];
+            list.push(temp);
         }
         that.setState({
-            orgs: temp
+            orgs:list
         });
-        console.log(temp)
     });
+};
+
+
+export const postOrg = (org) => {
+    console.log(org)
+    db.ref('/v1/Organizations').push(org);
 };

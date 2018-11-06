@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import Login from './login';
 import Home from './home';
 import Organizations from './organizations';
+import AddOrganization from './addOrganization';
+
 
 const PrivateRoute = ({component: Component, ...rest}) => (
     <Route {...rest} render={ (props)  => (
@@ -23,6 +25,7 @@ class Main extends React.Component{
                         <Route exact path="/" component={Login}/>
                         <PrivateRoute exact path='/home' component={Home} auth={this.props.authentication}/>
                         <PrivateRoute exact path="/organizations" component={Organizations} auth={this.props.authentication}/>
+                        <Route exact path="/addOrg" component={AddOrganization}/>
                     </Switch>
                 </Router>
 		);
