@@ -1,5 +1,7 @@
 export const DATA_AVAILABLE = 'DATA_AVAILABLE';
 export const SET_AUTH = 'SET_AUTH';
+export const SET_ORG = 'SET_ORG';
+
 
 //Import the sample data
 // import Data from '../instructions.json';
@@ -26,4 +28,8 @@ export const SET_AUTH = 'SET_AUTH';
 
 export function authenticate(){
     return {type: SET_AUTH};
+};
+
+export function setOrg(payload){
+    return {type: SET_ORG, org:payload};
 };

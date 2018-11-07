@@ -3,9 +3,20 @@
 }
 
 #item-container{
-    flex: 1;
-    flex-direction: column;
+    display: inline-block;
+}
 
+#item-container p{
+    width: 500px;
+    font-size: 30px;
+    margin-bottom: 20px;
+    align-items: center;
+    border: 1px solid white;
+    justify-content: center;
+}
+
+item-container Link{
+    text-decoration: none;
 }
 
 #item-name{

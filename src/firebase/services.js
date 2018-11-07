@@ -31,11 +31,20 @@ export const fetchOrgs = (that) =>{
         let list = [];
         for (let key in snapshot){
             let temp = snapshot[key];
+            // temp['key'] = key;
             list.push(temp);
         }
         that.setState({
             orgs:list
         });
+        console.log(list);
+    });
+};
+
+export const fetchOrg_Key = (that, key) =>{
+    let str = '/v1/Organizations/' + key + '.json';
+    fetch(URL + str).then((res) => res.json()).then((snapshot) => {
+        console.log(snapshot);
     });
 };
 

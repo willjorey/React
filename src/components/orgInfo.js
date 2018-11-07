@@ -2,30 +2,24 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as Actions from '../actions'; //Import your actions
-import {fetchOrgs} from '../firebase/services';
 import {Navigation} from './navigation';
 import Modal from 'react-modal';
-import {Link} from 'react-router-dom';
 
 import {postOrg} from '../firebase/services';
 import logo from '../logo.svg';
 
-import '../css/organizations.css'
 
-export class Organizations extends Component {
+export class OrgInfo extends Component {
     constructor(props){
         super(props);
+        this.org = this.props.organization
         this.state = {
-            orgs: [],
+            org:{},
             showModal: false,
             name: '',
             url: '',
             msg:'',
         }
-    }
-
-    componentDidMount = () =>{
-        fetchOrgs(this);
     }
 
     openModal = () =>{
@@ -65,18 +59,15 @@ export class Organizations extends Component {
                 msg: 'Name: Field is Empty'
             })
         }
-    }
 
-    onOrgClick = (org) =>{
-        this.props.setOrg(org);
     }
   render() {
     return (
-      <div className='Organizations'>
+      <div className='OrgInfo'>
         <Navigation/>
-        <button id='add-btn' onClick={this.openModal}>+ Add Organization</button>
+        <button id='add-btn' onClick={this.openModal}>+ Add Game</button>
         <div id='container'>
-            <h3 style={{color: 'white', fontSize:'30px'}}>Organizations</h3>
+            <h3 style={{color: 'white', fontSize:'30px'}}>{this.org.name}</h3>
 
             <div>
                 <Modal
@@ -106,17 +97,6 @@ export class Organizations extends Component {
 
                 </Modal>
             </div>
-
-            <div id='item-container'>
-
-                {this.state.orgs.map( (org, i) =>  
-                <div key={i}>
-                    <Link to={'/organizations/'+ org.name} style={{ textDecoration: 'none' }} onClick={()=>{this.onOrgClick(org)}}>
-                        <p><img src={org.banner} height='100px' width='200px'/> {org.name} </p>
-                    </Link>
-                </div>
-                )}
-            </div>
         </div>
       </div>
     );
@@ -135,4 +115,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 //Connect everything
-export default connect(mapStateToProps, mapDispatchToProps)(Organizations);
+export default connect(mapStateToProps, mapDispatchToProps)(OrgInfo);
