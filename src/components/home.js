@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as Actions from '../actions'; //Import your actions
-import {fetchOrgs} from '../firebase/services';
 import {Navigation} from './navigation';
 import '../css/home.css';
 
@@ -14,10 +13,6 @@ export class Home extends Component {
         }
     }
 
-    componentDidMount = () =>{
-        fetchOrgs(this);
-    }
-    
   render() {
     return (
       <div className='Home'>

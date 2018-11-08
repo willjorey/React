@@ -8,7 +8,6 @@ import Modal from 'react-modal';
 import {Link} from 'react-router-dom';
 
 import {postOrg} from '../firebase/services';
-import logo from '../logo.svg';
 
 import '../css/organizations.css'
 
@@ -16,7 +15,7 @@ export class Organizations extends Component {
     constructor(props){
         super(props);
         this.state = {
-            orgs: [],
+            orgs: this.props.organizations,
             showModal: false,
             name: '',
             url: '',
@@ -25,7 +24,15 @@ export class Organizations extends Component {
     }
 
     componentDidMount = () =>{
-        fetchOrgs(this);
+        if(this.props.organizations.length === 0){
+            fetchOrgs(this); 
+            console.log('fetched');
+        }else{
+            this.setState({
+                orgs: this.props.organizations
+            })
+        }
+   
     }
 
     openModal = () =>{
@@ -84,7 +91,7 @@ export class Organizations extends Component {
                 onRequestClose={this.closeModal}
                 contentLabel="Example Modal"
                 className="Modal"
-                style={{overlay:{backgroundColor: 'black', opacity: '0.8'} }}
+                style={{overlay:{backgroundColor: 'black'} }}
                 >
 
                 <div id='form-container'>
@@ -112,7 +119,7 @@ export class Organizations extends Component {
                 {this.state.orgs.map( (org, i) =>  
                 <div key={i}>
                     <Link to={'/organizations/'+ org.name} style={{ textDecoration: 'none' }} onClick={()=>{this.onOrgClick(org)}}>
-                        <p><img src={org.banner} height='100px' width='200px'/> {org.name} </p>
+                        <p><img src={org.banner} height='100px' width='200px' alt=''/> {org.name} </p>
                     </Link>
                 </div>
                 )}
@@ -126,7 +133,8 @@ export class Organizations extends Component {
 
 function mapStateToProps(state, props) {
     return {
-        organization: state.orgReducer.org,
+        org: state.orgReducer.org,
+        organizations: state.orgReducer.organizations,
     }
 }
 

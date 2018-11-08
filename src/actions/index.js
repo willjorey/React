@@ -1,7 +1,8 @@
 export const DATA_AVAILABLE = 'DATA_AVAILABLE';
 export const SET_AUTH = 'SET_AUTH';
 export const SET_ORG = 'SET_ORG';
-
+export const SET_ORGANIZATIONS = 'SET_ORGANIZATIONS';
+export const SET_TOURNAMENTS = 'SET_TOURNAMENTS';
 
 //Import the sample data
 // import Data from '../instructions.json';
@@ -32,4 +33,12 @@ export function authenticate(){
 
 export function setOrg(payload){
     return {type: SET_ORG, org:payload};
+};
+
+export function setOrganizations(payload){
+    return {type: SET_ORGANIZATIONS, organizations:payload};
+};
+
+export function setTournaments(payload){
+    return {type: SET_TOURNAMENTS, tournaments:payload};
 };

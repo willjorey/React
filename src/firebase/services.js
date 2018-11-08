@@ -34,10 +34,10 @@ export const fetchOrgs = (that) =>{
             // temp['key'] = key;
             list.push(temp);
         }
+        that.props.setOrganizations(list);
         that.setState({
-            orgs:list
-        });
-        console.log(list);
+            orgs: that.props.organizations,
+        })
     });
 };
 
@@ -52,4 +52,20 @@ export const fetchOrg_Key = (that, key) =>{
 export const postOrg = (org) => {
     console.log(org);
     db.ref('/v1/Organizations').push(org);
+};
+
+export const fetchTournaments_Keys = async (that, tourn) =>{
+    let list = [];
+    for (let key in tourn){
+        let str = '/v1/Tournaments/';
+        str += key + '.json';
+        fetch(URL + str).then((res) => res.json()).then((snapshot) => {
+                list.push(snapshot);
+                that.props.setTournaments(list);
+                that.setState({
+                    tournaments: list,
+                });
+        });
+
+    }
 };

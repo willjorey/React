@@ -5,21 +5,30 @@ import * as Actions from '../actions'; //Import your actions
 import {Navigation} from './navigation';
 import Modal from 'react-modal';
 
-import {postOrg} from '../firebase/services';
-import logo from '../logo.svg';
-
 
 export class OrgInfo extends Component {
     constructor(props){
         super(props);
-        this.org = this.props.organization
+        this.org = this.props.org;
+        this.tournaments = this.org.Tournaments;
         this.state = {
+            tournaments: [],
             org:{},
             showModal: false,
             name: '',
             url: '',
             msg:'',
         }
+    }
+
+    componentDidMount = () =>{
+        let list = [];
+        for(let key in this.tournaments){
+            list.push(this.tournaments[key])
+        };
+        this.setState({
+            tournaments:list
+        })
     }
 
     openModal = () =>{
@@ -46,26 +55,11 @@ export class OrgInfo extends Component {
         })
     };
 
-    onSubmit = () =>{
-        let obj = {name: this.state.name, banner: this.state.url, subscriptions: 0, Tournaments: {default:'test'}};
-        if(this.state.name !== ''){
-            postOrg(obj);
-            this.setState({
-               msg: 'Organization Added!',
-           });
-           this.state.orgs.push(obj);
-        }else{
-            this.setState({
-                msg: 'Name: Field is Empty'
-            })
-        }
-
-    }
   render() {
     return (
       <div className='OrgInfo'>
         <Navigation/>
-        <button id='add-btn' onClick={this.openModal}>+ Add Game</button>
+        <button id='add-btn' onClick={this.openModal}>+ Add Tournament</button>
         <div id='container'>
             <h3 style={{color: 'white', fontSize:'30px'}}>{this.org.name}</h3>
 
@@ -86,7 +80,7 @@ export class OrgInfo extends Component {
                         <p style={{color:'white'}}>Logo Url</p>
                         <input placeholder='Optional' id='name-form'type='text' value={this.state.url} onChange={this.setUrl}/>
                     </form>
-                    <button id='submit-btn' onClick={this.onSubmit}>Submit</button>
+                    <button id='submit-btn'>Submit</button>
 
                     <p style={{color: 'yellow', fontSize:'20px', marginLeft: '16%'}}>{this.state.msg}</p>
                 </div>
@@ -97,6 +91,14 @@ export class OrgInfo extends Component {
 
                 </Modal>
             </div>
+            <div id='item-container'>
+
+                {this.state.tournaments.map( (t, i) =>  
+                <div key={i}>
+                        <p>{t.name} </p>
+                </div>
+                )}
+                </div>
         </div>
       </div>
     );
@@ -106,7 +108,10 @@ export class OrgInfo extends Component {
 
 function mapStateToProps(state, props) {
     return {
-        organization: state.orgReducer.org,
+        org: state.orgReducer.org,
+        organizations: state.orgReducer.organizations,
+        tournaments: state.orgReducer.tournaments,
+
     }
 }
 
