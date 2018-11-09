@@ -62,7 +62,7 @@ export class Login extends Component {
                     <input id='pass' type='text' value={this.state.pass} onChange={this.setPass}/>
                     <br/>
                 </form>
-                <button onClick={this.onLogin}>Login</button>
+                <button id='login-btn'onClick={this.onLogin}>Login</button>
 
                 <p style={{color: 'yellow', fontSize: '20px'}}>{this.state.error}</p>
             </div>

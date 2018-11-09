@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import * as Actions from '../actions'; //Import your actions
 import {Navigation} from './navigation';
 import Modal from 'react-modal';
+import {postTourn, updateOrg} from '../firebase/services';
 
 
 export class OrgInfo extends Component {
@@ -13,10 +14,8 @@ export class OrgInfo extends Component {
         this.tournaments = this.org.Tournaments;
         this.state = {
             tournaments: [],
-            org:{},
             showModal: false,
             name: '',
-            url: '',
             msg:'',
         }
     }
@@ -55,6 +54,29 @@ export class OrgInfo extends Component {
         })
     };
 
+    onSubmit = () =>{
+        if(this.state.name !== ''){
+            let date = new Date().toDateString();
+            let obj = {};
+            obj[date] = {'Gamekey': 'default'};
+            postTourn(obj);
+            obj = {};
+            obj['start'] = date;
+            obj['end'] = date;
+            obj['name'] = this.state.name;
+            updateOrg(this.org.key, obj);
+    
+            this.setState({
+                msg: 'Tournament Created',
+            })
+        }else{
+            this.setState({
+                msg: 'Name: Field is Empty',
+            })
+        }
+
+    }
+
   render() {
     return (
       <div className='OrgInfo'>
@@ -69,18 +91,15 @@ export class OrgInfo extends Component {
                 onRequestClose={this.closeModal}
                 contentLabel="Example Modal"
                 className="Modal"
-                style={{overlay:{backgroundColor: 'black', opacity: '0.8'} }}
+                style={{overlay:{backgroundColor: 'black'} }}
                 >
 
                 <div id='form-container'>
                     <form>
-                        <p style={{color:'white'}}>Name of Organization</p>
-                        <input placeholder='NBA' id='name-form'type='text' value={this.state.name} onChange={this.setName}/>
-
-                        <p style={{color:'white'}}>Logo Url</p>
-                        <input placeholder='Optional' id='name-form'type='text' value={this.state.url} onChange={this.setUrl}/>
+                        <p style={{color:'white'}}>Name of Tournament</p>
+                        <input placeholder='Houseleague' id='name-form'type='text' value={this.state.name} onChange={this.setName}/>
                     </form>
-                    <button id='submit-btn'>Submit</button>
+                    <button id='submit-btn' onClick={this.onSubmit}>Submit</button>
 
                     <p style={{color: 'yellow', fontSize:'20px', marginLeft: '16%'}}>{this.state.msg}</p>
                 </div>

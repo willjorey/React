@@ -31,13 +31,14 @@ export const fetchOrgs = (that) =>{
         let list = [];
         for (let key in snapshot){
             let temp = snapshot[key];
-            // temp['key'] = key;
+            temp['key'] = key;
             list.push(temp);
         }
         that.props.setOrganizations(list);
         that.setState({
             orgs: that.props.organizations,
-        })
+        });
+        return list;
     });
 };
 
@@ -53,6 +54,16 @@ export const postOrg = (org) => {
     console.log(org);
     db.ref('/v1/Organizations').push(org);
 };
+
+export const postTourn = (tourn) => {
+    console.log(tourn);
+    db.ref('/v1/Tournaments').push(tourn);
+};
+
+export const updateOrg = (key,tourn) =>{
+    console.log(tourn);
+    db.ref('/v1/Organizations/'+ key +'/Tournaments').push(tourn);
+}
 
 export const fetchTournaments_Keys = async (that, tourn) =>{
     let list = [];

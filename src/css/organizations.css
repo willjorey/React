@@ -1,9 +1,20 @@
 #container{
-    margin-left: 33%;
+
+    width:30%;
+    height: 100%;
+}
+
+#columns{
+    display: flex;
+    flex-direction: row;
 }
 
 #item-container{
-    display: inline-block;
+    border-top: transparent;
+    border-left: transparent;
+    border-right: 1px solid white;
+    border-bottom: transparent;
+    padding-right: 50px;
 }
 
 #item-container p{
@@ -11,8 +22,11 @@
     font-size: 30px;
     margin-bottom: 20px;
     align-items: center;
-    border: 1px solid white;
     justify-content: center;
+}
+
+#tournaments-container{
+    padding-left: 50px;
 }
 
 item-container Link{
@@ -80,4 +94,21 @@ p{
 #add-btn{
     font-size: 20px;
     width:200px;
+}
+
+#org-btn{
+    background-color: transparent;
+    border: 1px solid white;
+}
+
+#org-btn:focus{
+    outline: none;
+    background-color:  #008CBA;
+    opacity: 0.1%;
+}
+
+#tourn-div{
+    padding:10px;
+    background-color: transparent;
+    border: 1px solid white;
 }

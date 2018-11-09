@@ -46,7 +46,7 @@ input{
 input:focus {
     outline: none;
 }
-button{
+#login-btn{
     font-size: 30px;
     background-color: white;
     color: #1E90FF;
@@ -55,7 +55,7 @@ button{
     height: 50px;
 }
 
-button:focus{
+#login-btn:focus{
     outline:none;
 }
 
