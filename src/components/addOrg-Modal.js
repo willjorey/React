@@ -23,7 +23,10 @@ export default class AddOrgModal extends Component {
     closeModal = () =>{
         this.setState({
             showModal: false
-        })
+        });
+        this.props.that.setState({
+            showModal:false,
+        });
     };
 
     setName = (event) =>{

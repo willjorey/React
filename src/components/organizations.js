@@ -66,7 +66,7 @@ export class Organizations extends Component {
 
         <div id='container'>
 
-            <AddOrgModal show={this.state.showModal}/>
+            <AddOrgModal show={this.state.showModal} that={this}/>
             
             <div id="columns">
                 <div id='item-container'>
