@@ -1,6 +1,5 @@
 #container{
-
-    width:30%;
+    width:100%;
     height: 100%;
 }
 
@@ -10,19 +9,9 @@
 }
 
 #item-container{
-    border-top: transparent;
-    border-left: transparent;
-    border-right: 1px solid white;
-    border-bottom: transparent;
-    padding-right: 50px;
-}
-
-#item-container p{
-    width: 500px;
-    font-size: 30px;
-    margin-bottom: 20px;
-    align-items: center;
-    justify-content: center;
+    background-color: black;
+    width:50%;
+    margin-left: 25%;
 }
 
 #tournaments-container{
@@ -48,9 +37,10 @@ p{
     bottom: 25%;
     border-color: transparent;
     border-radius: 10px;
-    width:800px;
+    width:50%;
     height: 500px;
     background-color: #282c34;
+    text-align: center;
   }
 
 
@@ -66,12 +56,11 @@ p{
       margin-top: 50px;
 }
 
-#form-container{
-    margin-left: 25%;
+#form-container form {
+    text-align: center;
 }
 #form-container button{
     margin-top: 10%;
-    margin-left: 15%;
 }
 
 #form-container input{
@@ -96,19 +85,30 @@ p{
     width:200px;
 }
 
-#org-btn{
-    background-color: transparent;
-    border: 1px solid white;
+thead{
+    background-color: white;
+    color:black;
+    font-size: 30px;
 }
 
-#org-btn:focus{
-    outline: none;
-    background-color:  #008CBA;
-    opacity: 0.1%;
+thead th{
+    padding: 10px;
 }
 
-#tourn-div{
-    padding:10px;
-    background-color: transparent;
-    border: 1px solid white;
+
+tbody{
+    font-size:20px;
+    color:black;
+    background-color: white;
+}
+
+table{
+    width: 100%;
+}
+td{
+    text-align: center;
+}
+
+tr:hover{
+    background-color:grey;
 }

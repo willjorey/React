@@ -5,7 +5,9 @@ import * as Actions from '../actions'; //Import your actions
 import {fetchOrgs} from '../firebase/services';
 import {Navigation} from './navigation';
 import AddOrgModal from './addOrg-Modal';
-import '../css/organizations.css'
+import '../css/organizations.css';
+
+import {Link} from 'react-router-dom';
 
 export class Organizations extends Component {
     constructor(props){
@@ -16,9 +18,6 @@ export class Organizations extends Component {
             orgs: [],
             showModal: false,
             showTourn: false,
-            name: '',
-            url: '',
-            msg:'',
         }
     }
 
@@ -62,37 +61,33 @@ export class Organizations extends Component {
         <Navigation/>
         <button id='add-btn' onClick={this.openModal}>+ Add Organization</button>
         {this.state.showTourn&&<button id='add-btn' onClick={this.openModal}>+ Add Tournament</button>}
-        <h3 style={{color: 'white', fontSize:'30px'}}>Organizations</h3>
 
         <div id='container'>
 
             <AddOrgModal show={this.state.showModal} that={this}/>
-            
-            <div id="columns">
+
                 <div id='item-container'>
-                    {this.state.orgs.map( (org, i) =>  
-                    <div key={i}>
-                        
-                        <button id='org-btn' onClick={()=>{this.onOrgClick(org)}}>
-                            <p><img src={org.banner} height='100px' width='200px' alt=''/> {org.name} </p>
-                        </button>
-                    </div>
-                    )}
+                    <table>
+                        <thead>
+                            <tr id='header'>
+                                <th>#</th>
+                                <th>Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.state.orgs.map( (org, i) => 
+                            <tr key={i}>
+                                <td>{i}</td>
+                                <td>
+                                    <Link to={'/organizations/' + org.name} style={{textDecoration: 'none', color:'black'}} onClick={() =>{this.onOrgClick(org)}}>
+                                        <div id="org">{org.name}</div>
+                                    </Link>
+                                </td>
+                            </tr>
+                            )}
+                        </tbody>
+                    </table>
                 </div>
-
-                <div id='tournaments-container'>
-                    { this.state.showTourn && <div>
-                        {this.state.tournaments.map( (t, i) =>  
-                        <div key={i} style={{padding: '10px'}}>
-                                <div id='tourn-div'>
-                                <p style={{fontSize:'20px'}}> {t.name} </p>
-                                </div>
-                        </div>
-                        )}
-                    </div>}
-                </div>
-            </div>
-
         </div>
       </div>
     );

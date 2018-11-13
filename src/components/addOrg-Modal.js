@@ -11,6 +11,7 @@ export default class AddOrgModal extends Component {
             showTourn: false,
             name: '',
             url: '',
+            msg:'',
         }
     };
     componentWillReceiveProps(newProps){
