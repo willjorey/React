@@ -5,7 +5,7 @@ import * as Actions from '../actions'; //Import your actions
 import {Navigation} from './navigation';
 import AddTournModal from './addTourn-Modal';
 import '../css/orgInfo.css';
-
+import {Link} from 'react-router-dom';
 export class OrgInfo extends Component {
     constructor(props){
         super(props);
@@ -54,13 +54,18 @@ export class OrgInfo extends Component {
                         <tr>
                             <th>#</th>
                             <th>Name</th>
+                            <th>Start</th>
+                            <th>End</th>
                         </tr>
                     </thead>
                     <tbody>
                         {this.state.tournaments.map( (t, i) => 
                             <tr>
                                 <td>{i}</td>
-                                <td>{t.name}</td>
+                                <td><Link id ='link' to={'/organizations/' + this.org.name + '/' + t.name}><div>{t.name}</div></Link></td>
+                                <td><Link id ='link' to={'/organizations/' + this.org.name + '/' + t.name}><div>{t.date}</div></Link></td>
+                                <td><Link id ='link' to={'/organizations/' + this.org.name + '/' + t.name}><div>{t.end}</div></Link></td>
+
                             </tr>
                         )}
                     </tbody>

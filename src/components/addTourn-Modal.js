@@ -39,7 +39,7 @@ export default class AddTournModal extends Component {
             obj[date] = {'Gamekey': 'default'};
             postTourn(obj);
             obj = {};
-            obj['start'] = date;
+            obj['date'] = date;
             obj['end'] = date;
             obj['name'] = this.state.name;
             updateOrg(this.props.that.org.key, obj);

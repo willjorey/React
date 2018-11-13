@@ -27,6 +27,7 @@ class Main extends React.Component{
                         <PrivateRoute exact path='/home' component={Home} auth={this.props.authentication}/>
                         <PrivateRoute exact path="/organizations" component={Organizations} auth={this.props.authentication}/>
                         <PrivateRoute exact path="/organizations/:name" component={OrgInfo} auth={this.props.authentication}/>
+                        <PrivateRoute exact path="/organizations/:name/:game" component={OrgInfo} auth={this.props.authentication}/>
                         <Route exact path="/addOrg" component={AddOrganization}/>
                     </Switch>
                 </Router>
