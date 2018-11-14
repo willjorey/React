@@ -3,6 +3,8 @@ export const SET_AUTH = 'SET_AUTH';
 export const SET_ORG = 'SET_ORG';
 export const SET_ORGANIZATIONS = 'SET_ORGANIZATIONS';
 export const SET_TOURNAMENTS = 'SET_TOURNAMENTS';
+export const SET_TOURNAMENT = 'SET_TOURNAMENT';
+
 
 //Import the sample data
 // import Data from '../instructions.json';
@@ -41,4 +43,8 @@ export function setOrganizations(payload){
 
 export function setTournaments(payload){
     return {type: SET_TOURNAMENTS, tournaments:payload};
+};
+
+export function setTournament(payload){
+    return {type: SET_TOURNAMENT, tournament:payload};
 };

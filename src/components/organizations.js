@@ -22,9 +22,21 @@ export class Organizations extends Component {
     }
 
     componentDidMount = () =>{
+        let that = this;
         if(this.state.orgs.length === 0){
             console.log('fetched');
-            fetchOrgs(this); 
+            fetchOrgs().then((snapshot) => {
+                let list = [];
+                for (let key in snapshot){
+                    let temp = snapshot[key];
+                    temp['key'] = key;
+                    list.push(temp);
+                }
+                that.props.setOrganizations(list);
+                that.setState({
+                    orgs: that.props.organizations,
+                });
+            });; 
 
         }else{
             this.setState({

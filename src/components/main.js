@@ -7,6 +7,7 @@ import Home from './home';
 import Organizations from './organizations';
 import AddOrganization from './addOrganization';
 import OrgInfo from './orgInfo';
+import TournInfo from './tournInfo';
 
 
 const PrivateRoute = ({component: Component, ...rest}) => (
@@ -27,7 +28,7 @@ class Main extends React.Component{
                         <PrivateRoute exact path='/home' component={Home} auth={this.props.authentication}/>
                         <PrivateRoute exact path="/organizations" component={Organizations} auth={this.props.authentication}/>
                         <PrivateRoute exact path="/organizations/:name" component={OrgInfo} auth={this.props.authentication}/>
-                        <PrivateRoute exact path="/organizations/:name/:game" component={OrgInfo} auth={this.props.authentication}/>
+                        <PrivateRoute exact path="/organizations/:name/:t_name" component={TournInfo} auth={this.props.authentication}/>
                         <Route exact path="/addOrg" component={AddOrganization}/>
                     </Switch>
                 </Router>

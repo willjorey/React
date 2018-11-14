@@ -11,6 +11,9 @@ export default class AddTournModal extends Component {
             showModal: false,
             name: '',
             msg:'',
+            date: '',
+            end: '',
+            START: null,
         }
     };
     componentWillReceiveProps(newProps){
@@ -32,24 +35,47 @@ export default class AddTournModal extends Component {
         })
     };
 
+    setStartDate = (event) =>{
+        let str = event.target.value;
+        let d = new Date(str + ' EST');
+        this.setState({
+            date: event.target.value,
+            START: d,
+        });
+
+    };
+
+    setEndDate = (event) =>{
+        this.setState({
+            end: event.target.value,
+        })
+    };
+
     onSubmit = () =>{
-        if(this.state.name !== ''){
-            let date = new Date().toDateString();
+        if(this.state.name !== '' && this.state.date !== '' && this.state.end !== ''){
+            let date = this.state.START.toDateString();
             let obj = {};
             obj[date] = {'Gamekey': 'default'};
-            postTourn(obj);
+            //key value of new post
+            let key = postTourn(obj);
+
+            //Post new tournament under Organizations Collection
             obj = {};
-            obj['date'] = date;
-            obj['end'] = date;
+            obj['date'] = this.state.date;
+            obj['end'] = this.state.end;
             obj['name'] = this.state.name;
-            updateOrg(this.props.that.org.key, obj);
-    
+            updateOrg(this.props.orgKey, key, obj);
+            let t = this.props.tournaments;
+            t.push(obj);
+            this.props.that.setState({
+                tournaments: t
+            })
             this.setState({
                 msg: 'Tournament Created',
             })
         }else{
             this.setState({
-                msg: 'Name: Field is Empty',
+                msg: 'A Field is Empty',
             })
         }
 
@@ -70,6 +96,12 @@ export default class AddTournModal extends Component {
                 <form>
                     <p style={{color:'white'}}>Name of Tournament</p>
                     <input placeholder='Houseleague' id='name-form'type='text' value={this.state.name} onChange={this.setName}/>
+
+                    <p style={{color:'white'}}>Start Date</p>
+                    <input placeholder='Houseleague' id='name-form'type='date' value={this.state.date} onChange={this.setStartDate}/>
+
+                    <p style={{color:'white'}}>End Date</p>
+                    <input placeholder='Houseleague' id='name-form'type='date' value={this.state.end} onChange={this.setEndDate}/>
                 </form>
                 <button id='submit-btn' onClick={this.onSubmit}>Submit</button>
 

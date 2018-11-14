@@ -6,6 +6,7 @@ import {Navigation} from './navigation';
 import AddTournModal from './addTourn-Modal';
 import '../css/orgInfo.css';
 import {Link} from 'react-router-dom';
+
 export class OrgInfo extends Component {
     constructor(props){
         super(props);
@@ -14,14 +15,13 @@ export class OrgInfo extends Component {
         this.state = {
             tournaments: [],
             showModal: false,
-            name: '',
-            msg:'',
         }
     }
 
     componentDidMount = () =>{
         let list = [];
         for(let key in this.tournaments){
+            this.tournaments[key]['key'] = key;
             list.push(this.tournaments[key])
         };
         this.setState({
@@ -47,7 +47,7 @@ export class OrgInfo extends Component {
         </div>
         <div id='container'>
 
-            <AddTournModal show={this.state.showModal} that={this}/>
+            <AddTournModal show={this.state.showModal} orgKey={this.org.key} tournaments={this.state.tournaments} that={this}/>
             <div id='item-container'>
                 <table>
                     <thead>
@@ -60,12 +60,11 @@ export class OrgInfo extends Component {
                     </thead>
                     <tbody>
                         {this.state.tournaments.map( (t, i) => 
-                            <tr>
+                            <tr key={i}>
                                 <td>{i}</td>
-                                <td><Link id ='link' to={'/organizations/' + this.org.name + '/' + t.name}><div>{t.name}</div></Link></td>
-                                <td><Link id ='link' to={'/organizations/' + this.org.name + '/' + t.name}><div>{t.date}</div></Link></td>
-                                <td><Link id ='link' to={'/organizations/' + this.org.name + '/' + t.name}><div>{t.end}</div></Link></td>
-
+                                <td><Link id ='link' to={'/organizations/' + this.org.name + '/' + t.key} ><div>{t.name}</div></Link></td>
+                                <td><Link id ='link' to={'/organizations/' + this.org.name + '/' + t.key} ><div>{t.date}</div></Link></td>
+                                <td><Link id ='link' to={'/organizations/' + this.org.name + '/' + t.key} ><div>{t.end}</div></Link></td>
                             </tr>
                         )}
                     </tbody>

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
  
-import { SET_AUTH, SET_ORG, SET_ORGANIZATIONS, SET_TOURNAMENTS } from "../actions/" //Import the actions types constant we defined in our actions
+import { SET_AUTH, SET_ORG, SET_ORGANIZATIONS, SET_TOURNAMENTS, SET_TOURNAMENT } from "../actions/" //Import the actions types constant we defined in our actions
 
 
 let loginState = {authentication: false};
@@ -14,7 +14,7 @@ const loginReducer = (state = loginState, action) => {
     }
 };
 
-let orgState = {organizations: [], org: {}, tournaments: []};
+let orgState = {organizations: [], org: {}, tournaments: [], tourn: {}};
 const orgReducer = (state = orgState, action) => {
     switch (action.type) {
         case SET_ORG:
@@ -25,6 +25,10 @@ const orgReducer = (state = orgState, action) => {
             return state;
         case SET_TOURNAMENTS:
             state = {...orgState, tournaments: action.tournaments};
+            return state;
+        case SET_TOURNAMENT:
+            state = {...orgState, tourn: action.tournament};
+            console.log(state);
             return state;
         default:
             return state;

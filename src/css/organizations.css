@@ -109,6 +109,6 @@ td{
     text-align: center;
 }
 
-tr:hover{
+tbody tr:hover{
     background-color:grey;
 }

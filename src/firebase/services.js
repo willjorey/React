@@ -1,4 +1,6 @@
 import { firebase } from './firebase';
+
+const TOURNAMENTS_URL = '/v1/Tournaments/';
 const URL = 'https://basketball-9e231.firebaseio.com';
 // Database structure:
 // Organizations obj:
@@ -25,21 +27,9 @@ const URL = 'https://basketball-9e231.firebaseio.com';
             // }}
 const db = firebase.database();
 
-export const fetchOrgs = (that) =>{
+export const fetchOrgs = () =>{
     let str = '/v1/Organizations.json';
-    fetch(URL + str).then((res) => res.json()).then((snapshot) => {
-        let list = [];
-        for (let key in snapshot){
-            let temp = snapshot[key];
-            temp['key'] = key;
-            list.push(temp);
-        }
-        that.props.setOrganizations(list);
-        that.setState({
-            orgs: that.props.organizations,
-        });
-        return list;
-    });
+    return fetch(URL + str).then((res) => res.json());
 };
 
 export const fetchOrg_Key = (that, key) =>{
@@ -52,23 +42,25 @@ export const fetchOrg_Key = (that, key) =>{
 
 export const postOrg = (org) => {
     console.log(org);
-    db.ref('/v1/Organizations').push(org);
+    let post = db.ref('/v1/Organizations').push(org);
 };
 
 export const postTourn = (tourn) => {
     console.log(tourn);
-    db.ref('/v1/Tournaments').push(tourn);
+    let post = db.ref(TOURNAMENTS_URL).push(tourn);
+    return post.key;
 };
 
-export const updateOrg = (key,tourn) =>{
+export const updateOrg = (key, key2,tourn) =>{
     console.log(tourn);
-    db.ref('/v1/Organizations/'+ key +'/Tournaments').push(tourn);
+    let ref = db.ref('/v1/Organizations/'+ key +'/Tournaments');
+    ref.child(key2).set(tourn);
 }
 
 export const fetchTournaments_Keys = async (that, tourn) =>{
     let list = [];
     for (let key in tourn){
-        let str = '/v1/Tournaments/';
+        let str = TOURNAMENTS_URL;
         str += key + '.json';
         fetch(URL + str).then((res) => res.json()).then((snapshot) => {
                 list.push(snapshot);
@@ -79,4 +71,10 @@ export const fetchTournaments_Keys = async (that, tourn) =>{
         });
 
     }
+};
+
+export const fetchTournament_Key = async (key) =>{
+    let str = TOURNAMENTS_URL;
+    str += key + '.json';
+    return fetch(URL + str).then((res) => res.json());
 };
