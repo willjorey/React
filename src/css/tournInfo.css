@@ -1,9 +1,26 @@
 .TournInfo{
-    text-align: center;
+    width: 100%;
 }
 #date-bar{
+    text-align: center;
     display: inline-block;
     width: 100%;
     background-color: black;
     color: white;
+}
+
+#button-bar button{
+    background-color: #555555; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 20%;
+}
+
+#games-list{
+    text-align: center;
 }
