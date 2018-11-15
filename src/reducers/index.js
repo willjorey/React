@@ -28,7 +28,6 @@ const orgReducer = (state = orgState, action) => {
             return state;
         case SET_TOURNAMENT:
             state = {...orgState, tourn: action.tournament};
-            console.log(state);
             return state;
         default:
             return state;

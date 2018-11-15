@@ -42,7 +42,7 @@ export const fetchOrg_Key = (that, key) =>{
 
 export const postOrg = (org) => {
     console.log(org);
-    let post = db.ref('/v1/Organizations').push(org);
+    db.ref('/v1/Organizations').push(org);
 };
 
 export const postTourn = (tourn) => {

@@ -23,6 +23,8 @@ export class Organizations extends Component {
 
     componentDidMount = () =>{
         let that = this;
+
+        //Fetch all organizations and set to REDUX state organizations
         if(this.state.orgs.length === 0){
             console.log('fetched');
             fetchOrgs().then((snapshot) => {

@@ -35,6 +35,9 @@ export class OrgInfo extends Component {
         })
     };
     
+    onTournamentClick = (tourn) =>{
+        this.props.setTournament(tourn);
+    }
 
   render() {
     return (
@@ -62,9 +65,9 @@ export class OrgInfo extends Component {
                         {this.state.tournaments.map( (t, i) => 
                             <tr key={i}>
                                 <td>{i}</td>
-                                <td><Link id ='link' to={'/organizations/' + this.org.name + '/' + t.key} ><div>{t.name}</div></Link></td>
-                                <td><Link id ='link' to={'/organizations/' + this.org.name + '/' + t.key} ><div>{t.date}</div></Link></td>
-                                <td><Link id ='link' to={'/organizations/' + this.org.name + '/' + t.key} ><div>{t.end}</div></Link></td>
+                                <td><Link id ='link' to={'/organizations/' + this.org.name + '/' + t.key} onClick={()=>{this.onTournamentClick(t)}}><div>{t.name}</div></Link></td>
+                                <td><Link id ='link' to={'/organizations/' + this.org.name + '/' + t.key} onClick={()=>{this.onTournamentClick(t)}}><div>{t.date}</div></Link></td>
+                                <td><Link id ='link' to={'/organizations/' + this.org.name + '/' + t.key} onClick={()=>{this.onTournamentClick(t)}}><div>{t.end}</div></Link></td>
                             </tr>
                         )}
                     </tbody>

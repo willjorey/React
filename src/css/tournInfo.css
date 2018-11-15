@@ -1,0 +1,9 @@
+.TournInfo{
+    text-align: center;
+}
+#date-bar{
+    display: inline-block;
+    width: 100%;
+    background-color: black;
+    color: white;
+}
