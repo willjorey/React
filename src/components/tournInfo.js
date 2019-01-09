@@ -86,9 +86,11 @@ export class TournInfo extends Component {
         </div>
 
         <div id='date-bar'>
-            <button onClick={this.decr_date}>Left</button>
-            <h1>{this.state.date.toDateString()}</h1>
-            <button onClick={this.incr_date}>Right</button>
+            <ul>
+                <li><button onClick={this.decr_date}>Left</button></li>
+                <li><button >{this.state.date.toDateString()}</button></li>
+                <li><button onClick={this.incr_date}>Right</button></li>
+            </ul>
         </div>
         <div id='games-list'>
             {this.state.curr_games.map( (game,i) => 

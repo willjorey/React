@@ -6,7 +6,6 @@ import '../css/login.css';
 import {firebase} from '../firebase/firebase';
 import logo from '../logo.svg';
 
-
 export class Login extends Component {
     constructor(props){
         super(props);
@@ -34,6 +33,7 @@ export class Login extends Component {
         let pass = this.state.pass;
         let that = this;
         firebase.auth().signInWithEmailAndPassword(email, pass).then(function(user){
+            console.log(user)
             that.props.authenticate();
             that.props.history.push('/home');
         }).catch((error) => {
