@@ -88,14 +88,15 @@ export class TournInfo extends Component {
         <div id='date-bar'>
             <ul>
                 <li><button onClick={this.decr_date}>Left</button></li>
-                <li><button >{this.state.date.toDateString()}</button></li>
+                <li><button id='date' >{this.state.date.toDateString()}</button></li>
                 <li><button onClick={this.incr_date}>Right</button></li>
             </ul>
         </div>
         <div id='games-list'>
             {this.state.curr_games.map( (game,i) => 
-                <div key={i}>
-                    <p>{game.hName} VS {game.aName}</p>
+                <div id='game-container' key={i}>
+                    <p>{game.hName} ----- {game.aName}</p>
+                    <p> {game.hScore} - {game.aScore}</p>
                 </div>
             )}
         </div>
