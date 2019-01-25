@@ -1,6 +1,6 @@
 nav ul {
     list-style: none;
-    display: flex;
+    width: '100%';
     background-color: black;
   }
 
@@ -10,5 +10,12 @@ nav ul {
 
   nav ul li a {
     color: white;
+    text-decoration: none;
+  }
+  
+
+  nav ul li a:hover{
+    color: white;
+    opacity: 0.7;
     text-decoration: none;
   }

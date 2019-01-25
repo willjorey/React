@@ -105,10 +105,3 @@ tbody{
 table{
     width: 100%;
 }
-td{
-    text-align: center;
-}
-
-tbody tr:hover{
-    background-color:grey;
-}

@@ -52,7 +52,7 @@ export class OrgInfo extends Component {
 
             <AddTournModal show={this.state.showModal} orgKey={this.org.key} tournaments={this.state.tournaments} that={this}/>
             <div id='item-container'>
-                <table>
+                <table className="table table-striped">
                     <thead>
                         <tr>
                             <th>#</th>

@@ -81,7 +81,7 @@ export class Organizations extends Component {
             <AddOrgModal show={this.state.showModal} that={this}/>
 
                 <div id='item-container'>
-                    <table>
+                    <table className="table table-striped">
                         <thead>
                             <tr id='header'>
                                 <th>#</th>

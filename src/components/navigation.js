@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 export const Navigation = (props) => {
 		return(
-			<nav className="navbar navbar-default">
+			<nav className="navbar navbar-expand-lg">
 				<div className="container">
 					<div className="navbar-header">
 						<ul className="nav navbar-nav">
