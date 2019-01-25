@@ -86,6 +86,7 @@ export class Organizations extends Component {
                             <tr id='header'>
                                 <th>#</th>
                                 <th>Name</th>
+                                <th colSpan='2'>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -97,6 +98,9 @@ export class Organizations extends Component {
                                         <div id="org">{org.name}</div>
                                     </Link>
                                 </td>
+                                <td><button className="btn btn-primary">Edit</button></td>
+                                <td><button className="btn btn-danger">Delete</button></td>
+                                
                             </tr>
                             )}
                         </tbody>
