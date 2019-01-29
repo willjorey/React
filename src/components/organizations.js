@@ -7,8 +7,6 @@ import {Navigation} from './navigation';
 import AddOrgModal from './addOrg-Modal';
 import '../css/organizations.css';
 
-import {Link} from 'react-router-dom';
-
 export class Organizations extends Component {
     constructor(props){
         super(props);
@@ -68,12 +66,17 @@ export class Organizations extends Component {
         });
     };
 
+    rowClick = (org) =>{
+        this.props.history.push('/organizations/' + org.name);
+        this.onOrgClick(org);
+    }
+
 
   render() {
     return (
       <div className='Organizations'>
         <Navigation/>
-        <button id='add-btn' onClick={this.openModal}>+ Add Organization</button>
+        <button className='btn btn-primary' id='add-btn' onClick={this.openModal}>+ Add Organization</button>
         {this.state.showTourn&&<button id='add-btn' onClick={this.openModal}>+ Add Tournament</button>}
 
         <div id='container'>
@@ -81,22 +84,20 @@ export class Organizations extends Component {
             <AddOrgModal show={this.state.showModal} that={this}/>
 
                 <div id='item-container'>
-                    <table className="table table-striped">
+                    <table className="table table-hover">
                         <thead>
                             <tr id='header'>
                                 <th>#</th>
-                                <th>Name</th>
+                                <th>Organization Name</th>
                                 <th colSpan='2'>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             {this.state.orgs.map( (org, i) => 
-                            <tr key={i}>
+                            <tr key={i} onClick={()=> {this.rowClick(org)}}>
                                 <td>{i}</td>
                                 <td>
-                                    <Link to={'/organizations/' + org.name} style={{textDecoration: 'none', color:'black'}} onClick={() =>{this.onOrgClick(org)}}>
-                                        <div id="org">{org.name}</div>
-                                    </Link>
+                                    <div id="org">{org.name}</div>
                                 </td>
                                 <td><button className="btn btn-primary">Edit</button></td>
                                 <td><button className="btn btn-danger">Delete</button></td>

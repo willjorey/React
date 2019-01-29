@@ -75,13 +75,13 @@ export default class AddOrgModal extends Component {
                         <p style={{color:'white'}}>Logo Url</p>
                         <input placeholder='Optional' id='name-form'type='text' value={this.state.url} onChange={this.setUrl}/>
                     </form>
-                    <button id='submit-btn' onClick={this.onSubmit}>Submit</button>
+                    <button className='btn btn-primary'id='submit-btn' onClick={this.onSubmit}>Submit</button>
 
                     <p style={{color: 'yellow', fontSize:'20px', marginLeft: '16%'}}>{this.state.msg}</p>
                 </div>
 
                 <div id='btn-container'>
-                    <button id='close-btn' onClick={this.closeModal}>Close</button>
+                    <button className='btn btn-primary' id='close-btn' onClick={this.closeModal}>Close</button>
                 </div>
 
                 </Modal>

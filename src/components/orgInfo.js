@@ -5,7 +5,6 @@ import * as Actions from '../actions'; //Import your actions
 import {Navigation} from './navigation';
 import AddTournModal from './addTourn-Modal';
 import '../css/orgInfo.css';
-import {Link} from 'react-router-dom';
 
 export class OrgInfo extends Component {
     constructor(props){
@@ -39,6 +38,12 @@ export class OrgInfo extends Component {
         this.props.setTournament(tourn);
     }
 
+    onClickRow = (tourn) =>{
+        console.log(this.state.tournaments)
+        this.onTournamentClick(tourn);
+        this.props.history.push('/organizations/' + this.org.name + '/' + tourn.key);
+    }
+
   render() {
     return (
       <div className='OrgInfo'>
@@ -52,7 +57,7 @@ export class OrgInfo extends Component {
 
             <AddTournModal show={this.state.showModal} orgKey={this.org.key} tournaments={this.state.tournaments} that={this}/>
             <div id='item-container'>
-                <table className="table table-striped">
+                <table className="table table-hover">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -63,11 +68,11 @@ export class OrgInfo extends Component {
                     </thead>
                     <tbody>
                         {this.state.tournaments.map( (t, i) => 
-                            <tr key={i}>
+                            <tr key={i} onClick={() =>{this.onClickRow(t)}}>
                                 <td>{i}</td>
-                                <td><Link id ='link' to={'/organizations/' + this.org.name + '/' + t.key} onClick={()=>{this.onTournamentClick(t)}}><div>{t.name}</div></Link></td>
-                                <td><Link id ='link' to={'/organizations/' + this.org.name + '/' + t.key} onClick={()=>{this.onTournamentClick(t)}}><div>{t.date}</div></Link></td>
-                                <td><Link id ='link' to={'/organizations/' + this.org.name + '/' + t.key} onClick={()=>{this.onTournamentClick(t)}}><div>{t.end}</div></Link></td>
+                                <td><div>{t.name}</div></td>
+                                <td><div>{t.date}</div></td>
+                                <td><div>{t.end}</div></td>
                             </tr>
                         )}
                     </tbody>

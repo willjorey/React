@@ -87,9 +87,9 @@ export class TournInfo extends Component {
 
         <div id='date-bar'>
             <ul>
-                <li><button onClick={this.decr_date}>Left</button></li>
+                <li><button className='btn btn-primary' onClick={this.decr_date}>Left</button></li>
                 <li><button id='date' >{this.state.date.toDateString()}</button></li>
-                <li><button onClick={this.incr_date}>Right</button></li>
+                <li><button className='btn btn-primary' onClick={this.incr_date}>Right</button></li>
             </ul>
         </div>
         <div id='games-list'>

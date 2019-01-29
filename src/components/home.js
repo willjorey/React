@@ -15,7 +15,7 @@ export class Home extends Component {
 
   render() {
     return (
-      <div className='Home'>
+      <div className='home' >
         <Navigation/>
       </div>
     );
